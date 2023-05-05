@@ -4,9 +4,11 @@
   "description": "A container for large mutable strings with annotated regions",
   "main": "./lib/text-buffer",
   "scripts": {
-    "prepublish": "npm run clean && npm run compile && npm run lint && npm run docs",
+    "prepublish": "npm run distclean && npm run compile && npm run lint && npm run docs",
+    "dist": "npm run distclean && npm run compile && npm run lint && npm run docs",
     "docs": "node script/generate-docs",
-    "clean": "rimraf lib api.json",
+    "clean": "rimraf lib api.json && rimraf node_modules",
+    "distclean": "rimraf lib api.json",
     "compile": "coffee --no-header --output lib --compile src && cpy src/*.js lib/",
     "lint": "coffeelint -r src spec && standard src/*.js spec/*.js",
     "test": "node script/test",
